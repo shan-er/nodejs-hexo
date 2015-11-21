@@ -1,0 +1,338 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>react框架 | shan&#39;er</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="珊儿">
+    
+    <meta name="description" content="终于抽出时间来说说这个react了，Facebook于2013年5月开源的react，时间真的不是很久，当然对于更新换代如此快的前端来说，这个时间其实也不短了。之前一直没有了解过，最近由于项目需要，才开始接触，总体来说，用着不错，挺容易上手。在这里就简要说说我对react的认识。
+1.react 原">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="shan&#39;er" title="shan&#39;er"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="shan&#39;er">shan&#39;er</a></h1>
+				<h2 class="blog-motto">I don&#39;t want to earn my living; I want to live</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:shan-er.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/29/react-knowledge/" title="react框架" itemprop="url">react框架</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://shan-er.github.io" title="珊儿">珊儿</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-09-29T08:45:08.000Z" itemprop="datePublished">2015-09-29</time>
+    更新日期:<time datetime="2015-09-30T08:05:01.420Z" itemprop="dateModified">2015-09-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-react_原理"><span class="toc-number">1.</span> <span class="toc-text">1.react 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-react_文件"><span class="toc-number">2.</span> <span class="toc-text">2.react 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-react_主要内容"><span class="toc-number">3.</span> <span class="toc-text">3.react 主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1_JSX"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 JSX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2_Components_组件"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 Components 组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3_props和state"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 props和state</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4_render()"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 render()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-ReactJS/AngularJs/BackboneJs对比"><span class="toc-number">4.</span> <span class="toc-text">4.ReactJS/AngularJs/BackboneJs对比</span></a></li></ol>
+		</div>
+		
+		<p>终于抽出时间来说说这个react了，Facebook于2013年5月开源的react，时间真的不是很久，当然对于更新换代如此快的前端来说，这个时间其实也不短了。之前一直没有了解过，最近由于项目需要，才开始接触，总体来说，用着不错，挺容易上手。在这里就简要说说我对react的认识。</p>
+<h2 id="1-react_原理">1.react 原理</h2><p>随着web开发越来越复杂，对DOM的操作也越来越频繁，而过多的DOM操作严重影响了系统性能，对于如何进行高性能的复杂DOM操作，我们一直在努力…<br>react的出现给我们提供了一个全新的视角，来处理复杂的界面交互。<br>借用react官网的说法是：</p>
+<p>We built React to solve one problem: building large applications with data that changes over time.</p>
+<p>React如此受前端工程师的青睐，主要是因为她非常快；而她之所以如此快，是因为其提供的<strong>虚拟DOM</strong>。</p>
+<p>React并不直接操作浏览器上的DOM元素，而是通过轻量级的<strong>虚拟DOM</strong>来实现真实的DOM，这是其核心。</p>
+<p>根据React的设计，每当数据发生变化时，React就会构建完整的虚拟DOM树，然后React会拿当前的DOM树与之前的DOM树通过<em>diff算法</em>计算出不同的地方，最后只把变动的部分更新到真实的浏览器DOM上。在这里，我们不需要考虑每次构建虚拟DOM所带来的性能影响，因为虚拟DOM是存在在内存中的，性能自然极高。如此，当我们在使用React的时候，就不需要考虑数据变化时，UI是如何变化了；我们只需描述出在某一时刻我们希望看到的样子（Render部分），其他的就交给React吧。<br>至于React是如何将原来O(n^3)复杂度的Diff算法降低到O(n)的，在这里就先不细说了，只提供一个链接<a href="http://calendar.perfplanet.com/2013/diff/" target="_blank" rel="external">React’s diff algorithm</a>。</p>
+<h2 id="2-react_文件">2.react 文件</h2><p>接下来我们就看一下从React官网下载下来的几个文件。<br><img src="/img/react-file.png" alt="React操作"><br>JSXTransformer.js：实现在浏览器中的代码转换，即将jsx代码转化为js。<br>React-with-addons.js：在React基础上，为构建React apps提供一些有用的插件。例如：用于处理动画和过渡的TransitionGroup和CSSTransitionGroup；用于简化双向数据绑定的LinkedStateMixin等等，等等，具体查看<a href="http://facebook.github.io/react/docs/addons.html" target="_blank" rel="external">addons</a>。<br>项目中，在安装react依赖后，可以看到相关文件。<br><img src="/img/react-lib.png" alt="React操作"><br>由此，我们可以很清晰的看到，react.js和addons.js。如果我们想使用之前所说的这些插件的话，只需要用require(‘react/addons’)替换require(‘react’)就能得到带有所有插件的React。</p>
+<h2 id="3-react_主要内容">3.react 主要内容</h2><h3 id="3-1_JSX">3.1 JSX</h3><p>JSX是一个简单，可选的类似于HTML的语法。可选，就表明我们可以完全不用JSX，使用普通的js就可实现。但只要你用过了jsx，你就会发现这种语法真的非常方便。<br>JSX的基本原理：自动识别html代码，并且全部转换成React.createElement。注意：JSX区分html代码的方式是，前括号之内并且首字母小写的就是html代码，如果首字母大写则就是react组件。<br><img src="/img/react-jsx.png" alt="React-JSX"></p>
+<h3 id="3-2_Components_组件">3.2 Components 组件</h3><p>DOM树上的节点被称为元素，而在React中，在Virtual DOM上称为component。组件，就是封装起来的具有独立功能的UI部件。对项目来说，整个UI都是由小组件构成的大组件，彼此独立。<br>[引用] React认为一个组件应该具有如下特征：<br>（1）可组合（Composeable）：一个组件易于和其它组件一起使用，或者嵌套在另一个组件内部。如果一个组件内部创建了另一个组件，那么说父组件拥有（own）它创建的子组件，通过这个特性，一个复杂的UI可以拆分成多个简单的UI组件；<br>（2）可重用（Reusable）：每个组件都是具有独立功能的，它可以被使用在多个UI场景；<br>（3）可维护（Maintainable）：每个小的组件仅仅包含自身的逻辑，更容易被理解和维护；</p>
+<p>对于React组件，我们可以使用React.createClass进行自定义。<br><img src="/img/react-code.png" alt="React-code"><br>除自定义外，我们也可以选择使用第三方的可重用React组件，如ant design等等。<br><img src="/img/react-antd.png" alt="React-antd"></p>
+<h3 id="3-3_props和state">3.3 props和state</h3><p>props和state，React提供的两种数据“模型”，使用时需要注意。一般来说，因用户交互需要修改数据时，应该使用state。<br>props使用getDefaultProps方法设置初始值。state使用getInitialState和setState分别来初始化和修改state。</p>
+<h3 id="3-4_render()">3.4 render()</h3><p>render方法，将React的模板转化为HTML,并插入到相应的DOM结构中。<br>当props或state的值发生变化时，会调用render方法，在React render的时候，会重新生成虚拟DOM，再对虚拟DOM中发生改变的部分进行重新渲染。<br><img src="/img/react-code1.png" alt="React-render"></p>
+<h2 id="4-ReactJS/AngularJs/BackboneJs对比">4.ReactJS/AngularJs/BackboneJs对比</h2><p><img src="/img/react-compare.png" alt="React-compare"></p>
+<p><em>React官网：<a href="http://facebook.github.io/react/docs/getting-started.html" target="_blank" rel="external">http://facebook.github.io/react/docs/getting-started.html</a></em><br><em>React概览：<a href="http://segmentfault.com/a/1190000000693651" target="_blank" rel="external">http://segmentfault.com/a/1190000000693651</a></em><br><em>ES6 features: <a href="https://github.com/lukehoban/es6features" target="_blank" rel="external">https://github.com/lukehoban/es6features</a></em><br><em>Awesome React：<a href="https://github.com/enaqx/awesome-react" target="_blank" rel="external">https://github.com/enaqx/awesome-react</a></em></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/前端/">前端</a><a href="/tags/技术/">技术</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/技术/">技术</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://shan-er.github.io/2015/09/29/react-knowledge/" data-title="react框架 | shan&#39;er" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/09/22/world/"  title="珊儿’s world！">
+ <strong>NEXT:</strong><br/> 
+ <span>珊儿’s world！
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-react_原理"><span class="toc-number">1.</span> <span class="toc-text">1.react 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-react_文件"><span class="toc-number">2.</span> <span class="toc-text">2.react 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-react_主要内容"><span class="toc-number">3.</span> <span class="toc-text">3.react 主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1_JSX"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 JSX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2_Components_组件"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 Components 组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3_props和state"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 props和state</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4_render()"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 render()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-ReactJS/AngularJs/BackboneJs对比"><span class="toc-number">4.</span> <span class="toc-text">4.ReactJS/AngularJs/BackboneJs对比</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/技术/" title="技术">技术<sup>1</sup></a></li>
+		
+			<li><a href="/categories/日志/" title="日志">日志<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/前端/" title="前端">前端<sup>1</sup></a></li>
+		
+			<li><a href="/tags/我/" title="我">我<sup>1</sup></a></li>
+		
+			<li><a href="/tags/技术/" title="技术">技术<sup>1</sup></a></li>
+		
+			<li><a href="/tags/日记/" title="日记">日记<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://shan-er.github.io" target="_blank" title="珊儿">珊儿</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>
